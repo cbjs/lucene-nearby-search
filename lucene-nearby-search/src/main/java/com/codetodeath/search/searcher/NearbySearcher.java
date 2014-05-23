@@ -49,6 +49,10 @@ public class NearbySearcher {
         return search(query, num, km, spatialContext.makePoint(lon, lat));
     }
 
+    public void close() throws IOException {
+        indexReader.close();
+    }
+
     public List<Document> search(Query query, int num, double radius, Point center) throws IOException {
         // circle filter
         SpatialArgs args = new SpatialArgs(SpatialOperation.Intersects,
